@@ -1,0 +1,22 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt 
+
+# importind dataset
+Bank=pd.read_csv(r"bank-additional.csv",delimiter=';')
+
+#replacing the "unknown" values with NaN
+Bank[Bank=="unknown"]= np.nan
+
+#number of columns#
+Bank.shape[1]
+#type of values#
+print(Bank.dtypes)
+
+print("Displaying coincise summery" , Bank.info)
+print("Statistial sumery" , Bank.describe)
+
+#heking the number of NaN# 
+print(Bank.isnull().sum()) 
+#there 1,230 NaN values , replacing with the other frequent values#
+
