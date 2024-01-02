@@ -18,7 +18,7 @@ print("Statistial sumery" , Bank.describe)
 
 #heking the number of NaN# 
 print(Bank.isnull().sum()) 
-#there 1,230 NaN values , replacing with the other frequent values#
+#there are 1,230 NaN values , replacing with the other frequent values#
 
 Bank_copy=Bank.copy()
 #Drop the null values#
