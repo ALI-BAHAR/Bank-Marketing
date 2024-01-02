@@ -20,3 +20,18 @@ print("Statistial sumery" , Bank.describe)
 print(Bank.isnull().sum()) 
 #there 1,230 NaN values , replacing with the other frequent values#
 
+Bank_copy=Bank.copy()
+#Drop the null values#
+Bank.dropna(subset=["housing"],inplace=True)
+Bank.dropna(subset=["loan"],inplace=True)
+Bank.dropna(subset=["job"],inplace= True)
+Bank.dropna(subset=["default"] , inplace=True)
+
+#Fill the null Values with the values chich are the most"
+Bank["marital"].fillna(Bank["marital"].mode , inplace=True)
+Bank["education"].fillna("basic.4y",inplace=True)
+
+print(Bank.isnull().sum())
+
+ 
+
