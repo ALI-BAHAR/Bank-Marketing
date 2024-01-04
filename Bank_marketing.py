@@ -34,5 +34,42 @@ Bank["default"].fillna("no",inplace=True)
 
 print(Bank.isnull().sum())
 
+
+#Exploratory Data Analysis#
+
+#The result of the campaign#
+plt.figure(figsize=(10,6))
+plt.pie(Bank["y"].value_counts(),labels=["no","yes"],explode=(0,0.1),autopct="%.2f")
+plt.title("Final outcome of the campaign")
+plt.legend()
+plt.show()
+
+#Age Distribution#
+plt.figure(figsize=(10,6))
+plt.hist(Bank["age"],bins=20)
+plt.ylabel("Number of client")
+plt.xlabel("age")
+plt.title("Customer Age Analysis")
+plt.show()
+
+#Job Distributio#
+plt.figure(figsize=(10,6))
+plt.hist(Bank['job'],bins=30,color = "r",width=.4)
+plt.xticks(rotation=80)
+plt.ylabel('Number of clients')
+plt.title('Customer job Analysis')
+plt.show()
+
+#Education Distributio#
+plt.figure(figsize=(10,6))
+plt.hist(Bank['education'],bins=15)
+plt.xticks(rotation=80)
+plt.ylabel('Number of clients')
+plt.title('Customer education Analysis')
+plt.show()
+
+
+
+
  
 
