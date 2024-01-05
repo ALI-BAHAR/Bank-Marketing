@@ -68,6 +68,9 @@ plt.ylabel('Number of clients')
 plt.title('Customer education Analysis')
 plt.show()
 
+print(pd.crosstab(Bank['marital'], Bank['loan']))
+Bank["Potential_customers"]=Bank["age"].apply(lambda x:"Yes" if x>25 and x<35 else "No")
+
 
 
 
