@@ -67,8 +67,9 @@ plt.xticks(rotation=80)
 plt.ylabel('Number of clients')
 plt.title('Customer education Analysis')
 plt.show()
-
+#add a DataFrame#
 print(pd.crosstab(Bank['marital'], Bank['loan']))
+#create a new column#
 Bank["Potential_customers"]=Bank["age"].apply(lambda x:"Yes" if x>25 and x<35 else "No")
 
 
