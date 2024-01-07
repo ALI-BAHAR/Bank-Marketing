@@ -71,6 +71,8 @@ plt.show()
 print(pd.crosstab(Bank['marital'], Bank['loan']))
 Bank["Potential_customers"]=Bank["age"].apply(lambda x:"Yes" if x>25 and x<35 else "No")
 
+#add a column with marital status and age between 25 and 35 , this group shows the most tendency #
+Bank['condition_column'] = np.where((Bank['marital'] == 'married') & (Bank['age'] >= 25) & (Bank['age'] <= 35), 'Condition Met', 'Condition Not Met')
 
 
 
