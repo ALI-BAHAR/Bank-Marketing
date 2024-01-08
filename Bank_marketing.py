@@ -75,6 +75,43 @@ Bank["Potential_customers"]=Bank["age"].apply(lambda x:"Yes" if x>25 and x<35 el
 #add a column with marital status and age between 25 and 35 , this group shows the most tendency #
 Bank['condition_column'] = np.where((Bank['marital'] == 'married') & (Bank['age'] >= 25) & (Bank['age'] <= 35), 'Condition Met', 'Condition Not Met')
 
+#Affection of months on the campaign#
+Bank_group=Bank.groupby(Bank["y"])
+
+lst=[]
+for i in Bank_group["month"].value_counts()["yes"].index:
+    lst.append(Bank_group["month"].value_counts()["yes"][i]/(Bank_group["month"].value_counts()["yes"][i]+Bank_group["month"].value_counts()["no"][i])*100)
+plt.bar(Bank_group["month"].value_counts()["yes"].index,lst)
+plt.ylabel("percentage of clients")
+plt.title("Months affection on the campaign")
+plt.show()
+
+#Affection of education on the campaign#
+lst=[]
+for i in Bank_group["education"].value_counts()["yes"].index:
+    lst.append(Bank_group["education"].value_counts()["yes"][i]/(Bank_group["education"].value_counts()["yes"][i] + Bank_group["education"].value_counts()["no"][i])*100)
+
+plt.bar(Bank_group["education"].value_counts()["yes"].index,lst)
+plt.xticks(rotation=90)
+plt.ylabel("percentage of clients")
+plt.title("Education affection on the campaign")
+plt.show()
+
+#Affection of job on the campaign#
+lst=[]
+for i in Bank_group["job"].value_counts()["yes"].index:
+    lst.append(Bank_group["job"].value_counts()["yes"][i]/(Bank_group["job"].value_counts()["yes"][i] + Bank_group["job"].value_counts()["no"][i])*100)
+
+plt.bar(Bank_group["job"].value_counts()["yes"].index,lst)
+plt.xticks(rotation=90)
+plt.ylabel("percentage of clients")
+plt.title("job affection on the campaign")
+plt.show()
+
+
+ 
+
+
 
 
  
