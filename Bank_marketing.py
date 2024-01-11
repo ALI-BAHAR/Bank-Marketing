@@ -108,7 +108,9 @@ plt.ylabel("percentage of clients")
 plt.title("job affection on the campaign")
 plt.show()
 
-
+plt.bar(Bank_group["poutcome"].value_counts()["no"].index,Bank_group["poutcome"].value_counts().["no"],color="green" ,width=.4.label="no")
+plt.bar(bank.group["poutcome"].value_counts()["yes"].index,Bank_group["poutcome"]value_counts().["yes"],color="blue",width=0.4,label="yes")
+plt.show()
  
 
 
