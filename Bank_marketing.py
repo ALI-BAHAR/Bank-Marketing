@@ -117,12 +117,16 @@ plt.show()
 Bank_copy2=Bank.copy()
 
 Bank_copy2=pd.concat([Bank_copy2,pd.get_dummies(Bank["month"])],axis=1)
-Bank_copy2.drop(Bank["month"],axis=1,inplace = True)
+Bank_copy2.drop(["month"],axis=1,inplace = True)
 
 Bank_copy2=pd.concat([Bank_copy2,pd.get_dummies(Bank["poutcome"])],axis=1)
-Bank_copy2.drop(Bank["poutcome"],axis=1,inplace=True)
+Bank_copy2.drop(["poutcome"],axis=1,inplace=True)
                      
  
+Bank_copy2["y"].replace({"yes"=1,"no"=0},inplace=True)
+
+Bank_copy2.drop(["duration"],axis=1,inplace=True)
+Bank_copy2.drop(["contact"],axis=1,inplace=True)
 
 
 
