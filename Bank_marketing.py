@@ -123,10 +123,15 @@ Bank_copy2=pd.concat([Bank_copy2,pd.get_dummies(Bank["poutcome"])],axis=1)
 Bank_copy2.drop(["poutcome"],axis=1,inplace=True)
                      
  
-Bank_copy2["y"].replace({"yes"=1,"no"=0},inplace=True)
+Bank_copy2["y"].replace({"yes":1,"no":0},inplace=True)
 
 Bank_copy2.drop(["duration"],axis=1,inplace=True)
 Bank_copy2.drop(["contact"],axis=1,inplace=True)
+
+Bank_copy2["default"].replace({"yes":1,"no:0"},inplace=True)
+Bank_copy2["housing"].replace({"yes":1,"no":0},inplace=True)
+Bank_copy2["loan"].replace({"yes":1,"no":0},inplace=True)
+Bank_copy2.drop(['job','marital','education','day_of_week'],axis=1,inplace=True)
 
 
 
