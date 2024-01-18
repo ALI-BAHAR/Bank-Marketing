@@ -131,7 +131,19 @@ Bank_copy2.drop(["contact"],axis=1,inplace=True)
 Bank_copy2["default"].replace({"yes":1,"no:0"},inplace=True)
 Bank_copy2["housing"].replace({"yes":1,"no":0},inplace=True)
 Bank_copy2["loan"].replace({"yes":1,"no":0},inplace=True)
-Bank_copy2.drop(['job','marital','education','day_of_week'],axis=1,inplace=True)
+Bank_copy2.drop(["job","marital","education","day_of_week"],axis=1,inplace=True)
+
+#corrolation#
+corrolation=Bank_copy2.corr()
+print("corrolation between y and the other columns: corrolation["y"].sortvalues")
+
+import seaborn as sns
+plt.figure(figsize=(20,20))
+sns.heatmap(corrolation)
+plt.title("corrolation between values")
+plt.show()
+
+
 
 
 
