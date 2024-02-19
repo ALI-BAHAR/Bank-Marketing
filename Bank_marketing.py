@@ -128,22 +128,36 @@ Bank_copy2["y"].replace({"yes":1,"no":0},inplace=True)
 Bank_copy2.drop(["duration"],axis=1,inplace=True)
 Bank_copy2.drop(["contact"],axis=1,inplace=True)
 
-Bank_copy2["default"].replace({"yes":1,"no:0"},inplace=True)
+Bank_copy2["default"].replace({"yes":1,"no":0},inplace=True)
 Bank_copy2["housing"].replace({"yes":1,"no":0},inplace=True)
 Bank_copy2["loan"].replace({"yes":1,"no":0},inplace=True)
 Bank_copy2.drop(["job","marital","education","day_of_week"],axis=1,inplace=True)
 
 #corrolation#
 corrolation=Bank_copy2.corr()
-print("corrolation between y and the other columns: corrolation["y"].sortvalues")
+print("corrolation between y and the other columns:", corrolation["y"].sortvalues(ascending=False))
 
 import seaborn as sns
 plt.figure(figsize=(20,20))
-sns.heatmap(corrolation)
+sns.heatmap(corrolation,annot=True,camp='codwarm')
 plt.title("corrolation between values")
 plt.show()
 
+#Modeling part
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
+from sklearn.neighbors import KNeighborsClassifier
 
+# Split the data
+x_train,x_test,y_train,y_test=train_test_split(Bank_copy2.drop(["y"],axis=1).values,Bank_copy2["y"].values,test_size=0.2,random_state=42)
+#KNN Model
+knn=KNeighborsClassifier(n_neighbors=6)
+knn.fit(x_train,y_train)
+
+y_pred=knn.predict(x_test)
+print("Accuracy:",accuracy_score(y_test,y_pred))
+print("Confusion Matrix:",confusion_matrix(y_test,y_pred))
+print("Classification Report:",classification_report(y_test,y_pred))
 
 
 
