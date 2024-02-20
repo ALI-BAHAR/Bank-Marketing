@@ -3,10 +3,11 @@ import pandas as pd
 import matplotlib.pyplot as plt 
 import streamlit as st
 
+
 st.title("Bank Marketing")
 st.write("The information deals with phone-based marketing campaigns carried out by a Portuguese bank. The classification goal is to predict whether the client will subscribe to a term deposit or not.")
 
-#Importind dataset
+#Read the dataset#
 Bank=pd.read_csv(r"bank-additional.csv",delimiter=';')
 st.sidebar.subheader("The original data: ")
 st.sidebar.write(Bank)
@@ -31,17 +32,14 @@ Bank.dropna(subset=["housing"],inplace=True)
 Bank.dropna(subset=["loan"],inplace=True)
 Bank.dropna(subset="job",inplace= True)
 
-
 #Fill the null Values with the values chich are the most#
 Bank["marital"].fillna(Bank["marital"].mode, inplace=True)
 Bank["education"].fillna("basic.4y",inplace=True)
 Bank["default"].fillna("no",inplace=True)
 
-print(Bank.isnull().sum())
-
-
 #Exploratory Data Analysis#
 if eda_check:
+    st.write("You can see some intersting charts about the data: ")
 
     Chart=plt.figure(figsize=(6,4))
     plt.pie(Bank["y"].value_counts(),labels=["no","yes"],explode=(0,0.1),autopct="%.2f")
@@ -49,7 +47,6 @@ if eda_check:
     st.write(Chart)
 
     Chart,ax=plt.subplots(1,2,figsize=(15,6))
-
 
     ax[0].hist(Bank["age"],bins=20)
     ax[0].set_ylabel("Number of client")
@@ -121,10 +118,10 @@ Bank_copy2.drop(["month"],axis=1,inplace = True)
 Bank_copy2=pd.concat([Bank_copy2,pd.get_dummies(Bank["poutcome"])],axis=1)
 Bank_copy2.drop(["poutcome"],axis=1,inplace=True)
                      
- 
 Bank_copy2["y"].replace({"yes":1,"no":0},inplace=True)
 
 Bank_copy2.drop(["duration"],axis=1,inplace=True)
+
 Bank_copy2.drop(["contact"],axis=1,inplace=True)
 
 Bank_copy2["default"].replace({"yes":1,"no":0},inplace=True)
